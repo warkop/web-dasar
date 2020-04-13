@@ -8,9 +8,9 @@ import (
 	"time"
 )
 
-var shared *_Configuration
+var shared *Config
 
-type _Configuration struct {
+type Config struct {
 	Server struct {
 		Port         int           `json:"post"`
 		ReadTimeout  time.Duration `json:"read_timeout"`
@@ -37,7 +37,7 @@ func init() {
 		panic(err)
 	}
 
-	shared = new(_Configuration)
+	shared = new(Config)
 	err = json.Unmarshal(bts, &shared)
 	if err != nil {
 		panic(err)
@@ -45,6 +45,6 @@ func init() {
 }
 
 //Configuration is
-func Configuration() _Configuration {
+func Configuration() Config {
 	return *shared
 }
